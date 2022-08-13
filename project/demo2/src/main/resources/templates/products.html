@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plants</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/reset-product.css}">
+
+</head>
+<body>
+<header th:replace="fragments/commons :: navbar"></header>
+<section  class="light">
+    <div class="container py-2">
+        <div class="h1 text-center text-dark" id="pageHeaderTitle">All About The Flowers </div>
+
+        <article th:each="p : ${products}" th:object="${p}" class="postcard light blue">
+            <a class="postcard__img_link" href="#">
+                <img class="postcard__img" th:src="*{imageUrl}" alt="Image Title" />
+            </a>
+            <div class="postcard__text t-dark">
+                <h1 th:text="*{name}" class="postcard__title blue"><a href="#">Podcast Title</a></h1>
+                <div class="postcard__subtitle small">
+                        <a th:href="${'/products/details/' + p.id}"
+                           class="btn btn-lg btn-outline-info btn-outline-success">Details</a>
+                </div>
+                <div class="postcard__bar"></div>
+                <div th:text="*{description}" class="postcard__preview-txt"></div>
+                <div class="fw-bolder" th:text="|Price: *{price}| + ' $'"></div>
+            </div>
+        </article>
+    </div>
+</section>
+<footer th:replace="fragments/commons :: footer"></footer>
+</body>
+</html>

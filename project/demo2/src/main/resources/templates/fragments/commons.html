@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-securiry">
+
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+</head>
+<body>
+<header th:fragment="navbar">
+    <nav style="font-family: 'Montserrat', sans-serif" class="navbar navbar-light navbar-expand-lg bg-light">
+        <div class="container-fluid">
+            <a href="/" class="navbar-brand">
+                <img src="/images/tree.png" alt="..." style="height: 88px; width: 88px;">
+                <span class="text-uppercase font-weight-bold">Plant</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" th:href="@{/about}">About us</a>
+                    </li>
+
+                    <li class="nav-item dropdown dmenu">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                            Products
+                        </a>
+                        <div class="dropdown-menu sm-menu">
+                            <a class="dropdown-item" th:href="@{/products/indoor}">Indoor Plans</a>
+                            <a class="dropdown-item" th:href="@{/products/outdoor}">Outdoor Plants</a>
+                            <a class="dropdown-item" th:href="@{/products/all}">All Plants</a>
+                        </div>
+                    </li>
+
+                        <li class="nav-item" sec:authorize="hasRole('ADMIN')">
+                            <a class="nav-link" th:href="@{/products/add}">Add Product</a>
+                        </li>
+                    <li class="nav-item" sec:authorize="hasRole('ADMIN')">
+                        <a  id="loadOrder" class="nav-link" th:href="@{/orders/all}">View All Orders</a>
+                    </li>
+                        <li class="nav-item" sec:authorize="!isAuthenticated()">
+                            <a class="nav-link" th:href="@{/users/register}">Sing Up</a>
+                        </li>
+                        <li class="nav-item" sec:authorize="!isAuthenticated()">
+                            <a class="nav-link" th:href="@{/users/login}">Sing In</a>
+                        </li>
+                        <li class="nav-item" sec:authorize="isAuthenticated()">
+                            <form th:action="@{/users/logout}" th:method="post">
+                                <input class="btn btn-link nav-link" type="submit" th:value="Logout">
+                            </form>
+                        </li>
+                    </ul>
+            </div>
+            <div class="d-flex align-items-center">
+                <!-- Icon -->
+
+                <ul class="navbar-nav ml-auto" sec:authorize="isAuthenticated()">
+                    <div>
+                        <p class="d-lg-inline-block">Logged in: </p>
+                        <a class="nav-link d-lg-inline-block" style="color: black"
+                           th:text="${#httpServletRequest.getRemoteUser().toUpperCase()}"></a>
+                    </div>
+
+                    <li class="nav-item">
+                        <a th:href="@{/myCart}"><img
+                                th:src="@{'https://res.cloudinary.com/lorayonova/image/upload/v1659854217/plants/shopping_cart_sstbb7.png'}"
+                                style="height: 56px;"></a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+
+    </nav>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.navbar-light .dmenu').hover(function () {
+                $(this).find('.sm-menu').first().stop(true, true).slideDown(150);
+            }, function () {
+                $(this).find('.sm-menu').first().stop(true, true).slideUp(105)
+            });
+        });
+    </script>
+</header>
+    <footer th:fragment="footer" class="py-5 bg-light">
+        <div class="container"><p class="m-0 text-center text-dark">Copyright &copy; Plants 2022</p></div>
+    </footer>
+</body>
+</html>

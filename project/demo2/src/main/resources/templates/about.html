@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About us</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <link rel="stylesheet" href="/css/about.css">
+</head>
+<body>
+<header th:replace="fragments/commons :: navbar"></header>
+
+<div class="section section-margin">
+    <div class="container">
+        <div class="row m-b-n30 align-items-center">
+            <div class="col-lg-6 order-first  m-b-30">
+                <div class="about-image service-layer-image ">
+                    <img class="about-image-1 img-fluid" src="https://res.cloudinary.com/lorayonova/image/upload/v1660365651/plants/__opt__aboutcom__coeus__resources__content_migration__treehugger__images__2019__06__soil-aeration-b952857830ce4749978ded32cb378792_tjdcoo.webp" alt="About Image">
+                    <img class="about-image-2 img-fluid" src="https://template.hasthemes.com/triball/triball/assets/images/about/about-3.png" alt="About Image">
+                </div>
+            </div>
+            <div class="col-lg-6 m-b-30 order-lg-last">
+                <div class="about-content mw-100">
+                    <div class="banner-content section-heading">
+                        <h5>PLANTS
+                        </h5>
+                        <h2 class="banner-title">About us</h2>
+                        <div class="title-icon-divider"><i class="fas fa-suitcase-rolling"></i></div>
+                    </div>
+                               <h2 class="title">Who We Are <br></h2>
+                    <p>Local or organic? Hybrid or electric? Paper or plastic or neither? Nearly all decisions today affect the environment, and figuring out which choices matter most often feels impossible.</p>
+                    <p>Staying informed and making smart choices is critical during this time of environmental change and opportunity. But our nearly 20-year-strong library of sustainability content is here to help.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
